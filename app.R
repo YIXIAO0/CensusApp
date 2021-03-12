@@ -35,20 +35,23 @@ server <- function(input, output) {
                    "Percent Black" = counties$black,
                    "Percent Hispanic" = counties$hispanic,
                    "Percent Asian" = counties$asian)
+    
     color <- switch(input$var, 
                     "Percent White" = "darkgreen",
                     "Percent Black" = "black",
                     "Percent Hispanic" = "darkorange",
                     "Percent Asian" = "darkviolet")
+    
     legend <- switch(input$var, 
                      "Percent White" = "% White",
                      "Percent Black" = "% Black",
                      "Percent Hispanic" = "% Hispanic",
                      "Percent Asian" = "% Asian")
     
-    percent_map(data, color, legend, max = input$range[1], min = input$range[2])
+    percent_map(data, color, legend, input$range[1], input$range[2])
   })
 }
+
 
 # Run app ----
 shinyApp(ui, server)
